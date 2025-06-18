@@ -63,20 +63,28 @@ int	init_mlx_and_window(t_game *game)
 /*Ensure that argument given for ./so_long
 is a map file of type .ber
 If not, print an error to screen*/
-int	validate_args(int argc, char **argv)
+int	validate_args(t_game *game, int argc, char **argv)
 {
 	size_t	len;
+	int		fd;
 
+	fd = open(argv[1], O_RDONLY);
+	if (fd < 0)
+	{
+		ft_printf("Error\nInvalid Path: %s\n", argv[1]);
+		free_and_exit(game);
+	}
+	close(fd);
 	if (argc != 2)
 	{
 		ft_printf("Error\nUsage: %s <map_file.ber>\n", argv[0]);
-		return (0);
+		free_and_exit(game);
 	}
 	len = ft_strlen(argv[1]);
 	if (len < 4 || ft_strncmp(argv[1] + len - 4, ".ber", 4) != 0)
 	{
 		ft_printf("Error\nMap file must have .ber extension\n");
-		return (0);
+		free_and_exit(game);
 	}
 	return (1);
 }
@@ -86,7 +94,7 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	game_init(&game);
-	if (!validate_args(argc, argv))
+	if (!validate_args(&game, argc, argv))
 		return (1);
 	if (init_mlx_and_window(&game))
 		return (1);

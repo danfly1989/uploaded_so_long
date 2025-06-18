@@ -56,7 +56,7 @@ int			key_press(int keycode, void *game_ptr);
 void		draw_player(t_game *game);
 void		clear_position(t_game *game, int x, int y);
 int			load_and_print_map(const char *filename, t_game *game);
-int			validate_args(int argc, char **argv);
+int			validate_args(t_game *game, int argc, char **argv);
 void		draw_tile(t_game *game, int *x, int *y);
 int			load_sprites(t_game *game);
 

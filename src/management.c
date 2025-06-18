@@ -28,8 +28,11 @@ void	free_and_exit(t_game *game)
 		mlx_destroy_image(game->mlx, game->exit_img);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
-	mlx_destroy_display(game->mlx);
-	free(game->mlx);
+	if (game->mlx)
+	{
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+	}
 	if (game->map)
 		free_map(game->map);
 	exit(0);
