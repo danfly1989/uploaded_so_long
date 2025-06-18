@@ -13,6 +13,11 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+# include "libft.h"
+# include <fcntl.h>
+# include <stdio.h>
+# include <string.h>
+
 typedef struct s_game
 {
 	void	*mlx;
@@ -43,11 +48,6 @@ typedef struct s_game
 # define TILE_SIZE 32
 # define KEY_ESC 65307
 # define KEYPRESS 2
-
-# include "libft.h"
-# include <fcntl.h>
-# include <stdio.h>
-# include <string.h>
 
 char		**load_map(const char *filename, t_game *game);
 void		find_player_start(t_game *game);
